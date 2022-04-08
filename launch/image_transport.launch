@@ -1,0 +1,6 @@
+<launch>
+  <!--<node pkg="learning_image_transport" name="transport" type="transport" output="screen"/>
+  <node pkg="learning_image_transport" name="timetest" type="timetest" output="screen"/>-->
+  <node pkg="learning_image_transport" name="projection" type="projection" output="screen"/>
+  <node pkg="learning_image_transport" name="timereset" type="timereset" output="screen"/>
+</launch>
