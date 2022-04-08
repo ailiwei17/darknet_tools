@@ -50,7 +50,7 @@ void laserCallback(const sensor_msgs::PointCloud::ConstPtr & msg )
 		livox_msg.points[i].z =  msg->points[i].z;
 		// 激光强度根据距离生成，假设材质都一样
     int distance = int(livox_msg.points[i].x * livox_msg.points[i].x\
-     + livox_msg.points[i].y * livox_msg.points[i].y +  livox_msg.points[i].z *   livox_msg.points[i].z);
+     + livox_msg.points[i].y * livox_msg.points[i].y +  livox_msg.points[i].z *   livox_msg.points[i].z + 1);
 		livox_msg.points[i].reflectivity =  255 / distance ;
 	}
 }
