@@ -3,4 +3,5 @@
   <node pkg="learning_image_transport" name="timetest" type="timetest" output="screen"/>-->
   <node pkg="learning_image_transport" name="projection" type="projection" output="screen"/>
   <node pkg="learning_image_transport" name="timereset" type="timereset" output="screen"/>
+<node pkg="learning_image_transport" name="point_trans" type="point_trans" output="screen"/>
 </launch>
