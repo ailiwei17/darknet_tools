@@ -58,7 +58,8 @@ private:
     cv::Mat distortion_coef = cv::Mat::zeros(5, 1, CV_64F);
     ofstream ofs;
     tf::TransformListener listener;
-    pcl::PointCloud<PointT>::Ptr cloud;
+    // 存储筛选出的点
+    // pcl::PointCloud<PointT>::Ptr cloud;
     
     int distance_x;
     int distance_y;
@@ -76,11 +77,15 @@ CameraLidarFusion::CameraLidarFusion()
     livox_sub_.subscribe(node_handle_,"/cloud_registered_reset",10);
     yolo_sub_.subscribe(node_handle_,"/darknet_ros/bounding_boxes",10);
     
-    // 存储筛选出的点
+    
+    /*
     cloud.reset(new pcl::PointCloud<PointT>());
     cloud->is_dense = false;
+    cloud->points.reserve(300000);
+    */
+
     //打开文件
-    ofs.open("/home/liwei/catkin_workspace/src/learning_image_transport/output.txt",ios::trunc);
+    ofs.open("/home/liwei/catkin_workspace/src/learning_image_transport/output.txt",ios::app);
     if (!ofs.is_open())
     {
         cout << "存储文件失败" << endl;
@@ -185,9 +190,11 @@ void CameraLidarFusion::callback(const sensor_msgs::PointCloud2ConstPtr& input_l
                         cloud_add.y = point_world.point.y;
                         cloud_add.z = point_world.point.z;
                         cloud_add.b = 255; 
-                        cloud->push_back(cloud_add);
+
+                        // cloud->push_back(cloud_add);
+
                         //PCL的默认距离单位是:m
-                        ofs << "[" <<ros::Time::now().toSec() << "]" << point_world.point.x << "\t" << point_world.point.y << "\t" << point_world.point.z << endl;
+                        ofs << "[" <<ros::Time::now().toSec() << "]" << "\t" << point_world.point.x << "\t" << point_world.point.y << "\t" << point_world.point.z << endl;
                     }
                 }
                  catch(tf::TransformException &ex)
@@ -200,11 +207,12 @@ void CameraLidarFusion::callback(const sensor_msgs::PointCloud2ConstPtr& input_l
         }
     }
     
-    
+    /*
     if(cloud->points.size()>0)
     {
         pcl::io::savePCDFileASCII("/home/liwei/catkin_workspace/src/learning_image_transport/output.pcd", *cloud);
     }
+    */
 }
 
 void CameraLidarFusion::getMat(const string path, vector<float>&Mat,const int line_num)

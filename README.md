@@ -11,6 +11,7 @@
 ## PointCloud转化为livxo_ros_driver/CustomMsg
 `rosrun learning_image_transport point_trans`
 
-
-
+## 从txt读取2D导航点
+`rosparam load yaml/param.yaml`
+`rosrun learning_image_transport nav_goal`
 
