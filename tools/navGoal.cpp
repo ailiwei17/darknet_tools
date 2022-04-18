@@ -160,7 +160,15 @@ int main(int argc, char** argv)
 		goal.target_pose.header.stamp = ros::Time::now();
 	
 		goal.target_pose.pose.position.x = ng_list[i][0];
-		goal.target_pose.pose.position.y = ng_list[i][1];
+		// 避免导航到不可到达点
+		if (ng_list[i][1] < 0)
+		{
+			goal.target_pose.pose.position.y = ng_list[i][1] + 0.5;
+		}
+		else
+		{
+			goal.target_pose.pose.position.y = ng_list[i][1] - 0.5;
+		}
 		cout << "x:" << "\t" << goal.target_pose.pose.position.x << "\t" << "y:" << goal.target_pose.pose.position.y << endl;
 		goal.target_pose.pose.orientation.w = 1.0;
 	
