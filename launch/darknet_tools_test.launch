@@ -1,8 +1,10 @@
 <launch>
   <rosparam command="load" file="$(find darknet_tools)/yaml/param.yaml" />
-  <!--<node pkg="darknet_tools" name="transport" type="transport" output="screen"/>
-  <node pkg="darknet_tools" name="timetest" type="timetest" output="screen"/>-->
-  <node pkg="darknet_tools" name="projection" type="projection" output="screen"/>
-  <node pkg="darknet_tools" name="timereset" type="timereset" output="screen"/>
-<node pkg="darknet_tools" name="point_trans" type="point_trans" output="screen"/>
+  <!-- 三维坐标计算节点 -->
+  <!-- <node pkg="darknet_tools" name="projection" type="projection" output="screen"/>
+  <node pkg="darknet_tools" name="timereset" type="timereset" output="screen"/> -->
+  <!-- 仿真点云格式转换节点 -->
+  <node pkg="darknet_tools" name="point_trans" type="point_trans" output="screen"/>
+  <!-- Canny算子节点 -->
+  <node pkg="darknet_tools" name="detection_canny" type="detection_canny" output="screen"/>
 </launch>
