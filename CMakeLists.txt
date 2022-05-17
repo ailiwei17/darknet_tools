@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(learning_image_transport)
+project(darknet_tools)
 set(CMAKE_CXX_STANDARD 14)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -22,6 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
   pcl_conversions
   geometry_msgs
   move_base
+  nav_msgs
   )
 find_package(OpenCV 3.4 REQUIRED)
 find_package(PCL 1.8 REQUIRED)
@@ -156,7 +157,9 @@ add_definitions(${PCL_DEFINITIONS})
 # add_executable(imamgetest tools/imagesizeNode.cpp)
 add_executable(projection src/livox_color.cpp)
 add_executable(timereset src/livox_timereset.cpp)
+add_executable(detection_canny src/detection_canny.cpp)
 add_executable(point_trans tools/point_trans.cpp)
+add_executable(eva_path tools/eva_path.cpp)
 add_executable(nav_goal tools/navGoal.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -182,9 +185,12 @@ target_link_libraries(projection ${catkin_LIBRARIES}
                                 ${PCL_LIBRARIES} 
                                 ${Boost_LIBRARIES}
                                 ${OpenCV_LIBRARIES})
+target_link_libraries(detection_canny ${catkin_LIBRARIES}
+                                ${OpenCV_LIBRARIES})
 target_link_libraries(timereset ${catkin_LIBRARIES})
 target_link_libraries(point_trans ${catkin_LIBRARIES})
 target_link_libraries(nav_goal ${catkin_LIBRARIES})
+target_link_libraries(eva_path ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############

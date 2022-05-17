@@ -41,7 +41,7 @@ NavGoal::NavGoal()
 	init_points.reset(new pcl::PointCloud<pcl::PointXYZ>() );
 	pcl::PointXYZ pt;
 	// 保存目标点路径
-	string path = "/home/liwei/catkin_workspace/src/learning_image_transport/output.txt";
+	string path = "/home/liwei/catkin_workspace/src/darknet_tools/output.txt";
 	ifs.open(path, ios::in);
 	if (!ifs.is_open())
 	{
@@ -145,6 +145,11 @@ int main(int argc, char** argv)
 	NavGoal ng;
 	vector<Eigen::Vector4f> ng_list  = ng.Get2DGoal(clusterParam);
 	 MoveBaseClient ac("move_base", true);
+
+	 for (int i=0; i < ng_list.size(); i++)
+	 {
+		 cout << ng_list[i][0]  <<  "\t" <<ng_list[i][1]  <<  "\t" << ng_list[i][2]  << endl;
+	 }
 	
 	 while(!ac.waitForServer(ros::Duration(5.0)))
 	 {

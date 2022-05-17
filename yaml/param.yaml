@@ -1,2 +1,1 @@
-# 区域分割 0  欧式聚类 1
-cluster: 1
+dir: "/home/liwei/catkin_workspace/src/darknet_tools/"

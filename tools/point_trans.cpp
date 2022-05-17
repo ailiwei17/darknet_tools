@@ -3,6 +3,7 @@
 #include <livox_ros_driver/CustomMsg.h>
 #include<cstdlib>
 
+//仿真环境下转换消息格式
 using namespace std;
 /* sensor_msgs/PointCloud消息格式
 std_msgs/Header header

@@ -85,7 +85,7 @@ CameraLidarFusion::CameraLidarFusion()
     */
 
     //打开文件
-    ofs.open("/home/liwei/catkin_workspace/src/learning_image_transport/output.txt",ios::app);
+    ofs.open("/home/liwei/catkin_workspace/src/darknet_tools/output.txt",ios::app);
     if (!ofs.is_open())
     {
         cout << "存储文件失败" << endl;
@@ -94,7 +94,7 @@ CameraLidarFusion::CameraLidarFusion()
         
     //获得偏移量
     vector<float> deviation;
-    getDistance("/home/liwei/catkin_workspace/src/learning_image_transport/yaml/deviation.txt", deviation);
+    getDistance("/home/liwei/catkin_workspace/src/darknet_tools/yaml/deviation.txt", deviation);
     distance_x = deviation[0];
     distance_y = deviation[1];
         
@@ -104,11 +104,11 @@ CameraLidarFusion::CameraLidarFusion()
     
     //获得参数
     cout << "**********相机内参矩阵为*********" << endl;
-    getMat("/home/liwei/catkin_workspace/src/learning_image_transport/yaml/intrinsic.txt",intrinsic,3);
+    getMat("/home/liwei/catkin_workspace/src/darknet_tools/yaml/intrinsic.txt",intrinsic,3);
     cout << "**********相机畸变矩阵为*********" << endl;
-    getMat("/home/liwei/catkin_workspace/src/learning_image_transport/yaml/distortion.txt",distortion,1);
+    getMat("/home/liwei/catkin_workspace/src/darknet_tools/yaml/distortion.txt",distortion,1);
     cout << "**********相机外参矩阵为*********" << endl;
-    getMat("/home/liwei/catkin_workspace/src/learning_image_transport/yaml/extrinsic.txt",extrinsic,3);
+    getMat("/home/liwei/catkin_workspace/src/darknet_tools/yaml/extrinsic.txt",extrinsic,3);
     double matrix1[3][4] = {{intrinsic[0], intrinsic[1], intrinsic[2],0}, {intrinsic[3], intrinsic[4], intrinsic[5],0}, {intrinsic[6], intrinsic[7], intrinsic[8],1}};
     double matrix2[4][4] = {{extrinsic[0], extrinsic[1], extrinsic[2], extrinsic[3]}, {extrinsic[4], extrinsic[5], extrinsic[6], extrinsic[7]}, {extrinsic[8], extrinsic[9], extrinsic[10], extrinsic[11]},{0,0,0,1}};
     

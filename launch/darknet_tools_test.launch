@@ -1,0 +1,8 @@
+<launch>
+  <rosparam command="load" file="$(find darknet_tools)/yaml/param.yaml" />
+  <!--<node pkg="darknet_tools" name="transport" type="transport" output="screen"/>
+  <node pkg="darknet_tools" name="timetest" type="timetest" output="screen"/>-->
+  <node pkg="darknet_tools" name="projection" type="projection" output="screen"/>
+  <node pkg="darknet_tools" name="timereset" type="timereset" output="screen"/>
+<node pkg="darknet_tools" name="point_trans" type="point_trans" output="screen"/>
+</launch>
